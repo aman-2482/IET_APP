@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "322637204361",
+    "project_id": "login-32ea3",
+    "storage_bucket": "login-32ea3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322637204361:android:60ff0b464673ae0225ef58",
+        "android_client_info": {
+          "package_name": "com.example.iet_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtC1w1LaZIirMmNmhqHpcoi6KU1xg8dVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
