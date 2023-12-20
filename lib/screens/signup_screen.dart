@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iet_app/reusable_widgets/reusable_widget.dart';
+import '../landing_page.dart';
 import '../utils/color_utils.dart';
 import 'home_screen.dart';
 
@@ -78,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (BuildContext context) =>  HomeScreen(),
+                              builder: (BuildContext context) =>  LandingPage(),
                             ));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");

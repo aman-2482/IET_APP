@@ -4,6 +4,7 @@ import 'package:iet_app/screens/home_screen.dart';
 import 'package:iet_app/screens/signup_screen.dart';
 import 'package:iet_app/utils/color_utils.dart';
 
+import '../landing_page.dart';
 import '../reusable_widgets/reusable_widget.dart';
 
 
@@ -70,7 +71,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => HomeScreen(),
+                          builder: (BuildContext context) => LandingPage(),
                         ));
                       }).onError((error, stackTrace) {
                         print("Error ${error.toString}");

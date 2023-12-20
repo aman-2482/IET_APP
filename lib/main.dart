@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:iet_app/routes.dart';
 import 'package:iet_app/screens/signin_screen.dart';
 import 'firebase_options.dart';
 
@@ -20,10 +21,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) => Routes.generateRoute(settings),
+      initialRoute:'/',
       home: const SignInScreen(),
     );
   }
