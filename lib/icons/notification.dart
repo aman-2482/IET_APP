@@ -3,7 +3,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 class NoticeCircularWidget extends StatelessWidget {
   final List<Map<String, String>> notices = [
-
     {
       'text': 'Unifest 2023-2024',
       'url': 'http://www.dbrauagra.org.in/',
@@ -114,8 +113,7 @@ class NoticeCircularWidget extends StatelessWidget {
             },
             child: Text('View All'),
             style: ElevatedButton.styleFrom(
-              primary: Colors.black, // Button background color
-              onPrimary: Colors.white, // Button text color
+              foregroundColor: Colors.white, backgroundColor: Colors.black, // Button text color
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),

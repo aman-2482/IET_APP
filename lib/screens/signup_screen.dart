@@ -16,6 +16,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,16 +30,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
       body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4"),
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-          child: SingleChildScrollView(
-              child: Padding(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              hexStringToColor("CB2B93"),
+              hexStringToColor("9546C4"),
+              hexStringToColor("5E61F4"),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Padding(
             padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
@@ -56,7 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 reusableTextField(
                   "Enter Email Id",
-                  Icons.lock_outline,
+                  Icons.email_outlined,
                   false,
                   _emailTextController,
                 ),
@@ -70,24 +76,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   _passwordTextController,
                 ),
                 signInSignUpButton(context, false, () {
+                  // Validate password length
+                  if (_passwordTextController.text.length < 6) {
+                    // Show error message
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Password must be at least 6 characters long"),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return; // Exit the function
+                  }
+
+                  // Proceed with Firebase sign-up
                   FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
+                      email: _emailTextController.text,
+                      password: _passwordTextController.text)
                       .then((value) {
-                        print("Created New Account");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>  LandingPage(),
-                            ));
+                    print("Created New Account");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => LandingPage(),
+                        ));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Error signing up: ${error.toString()}"),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
                   });
                 }),
               ],
             ),
-          ))),
+          ),
+        ),
+      ),
     );
   }
 }

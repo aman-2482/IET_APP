@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:iet_app/screens/home_screen.dart';
 import 'package:iet_app/screens/signup_screen.dart';
 import 'package:iet_app/utils/color_utils.dart';
 
 import '../landing_page.dart';
 import '../reusable_widgets/reusable_widget.dart';
-
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -28,10 +26,10 @@ class _SignInScreenState extends State<SignInScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-          hexStringToColor("CB2B93"),
-          hexStringToColor("9546C4"),
-          hexStringToColor("5E61F4"),
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              hexStringToColor("CB2B93"),
+              hexStringToColor("9546C4"),
+              hexStringToColor("5E61F4"),
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
@@ -47,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 30,
                 ),
                 reusableTextField(
-                  "Enter User Name",
+                  "Enter Email",
                   Icons.person_outline,
                   false,
                   _emailTextController,
@@ -58,13 +56,36 @@ class _SignInScreenState extends State<SignInScreen> {
                 reusableTextField(
                   "Enter Password",
                   Icons.lock_outline,
-                  false,
+                  true, // This makes the password field obscure the text
                   _passwordTextController,
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 signInSignUpButton(context, true, () {
+                  // Validate password length
+                  if (_passwordTextController.text.length < 6) {
+                    // Show error message
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Please entered the correct password"),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return; // Exit the function
+                  }
+                  if (_passwordTextController.text.length !=_passwordTextController) {
+                    // Show error message
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Password entered is wrong"),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return; // Exit the function
+                  }
+
+                  // Proceed with Firebase sign-in
                   FirebaseAuth.instance.signInWithEmailAndPassword(
                       email: _emailTextController.text,
                       password: _passwordTextController.text).then((value) {
@@ -73,14 +94,17 @@ class _SignInScreenState extends State<SignInScreen> {
                         MaterialPageRoute(
                           builder: (BuildContext context) => LandingPage(),
                         ));
-                      }).onError((error, stackTrace) {
-                        print("Error ${error.toString}");
-                        
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Error signing in: ${error.toString()}"),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
                   });
-
-
                 }),
-                signUpOption(context), // Pass the context
+                signUpOption(context),
               ],
             ),
           ),
