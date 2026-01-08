@@ -190,60 +190,7 @@ class AboutSection extends StatelessWidget {
                       )
                     ],
                   )),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     SizedBox(height: 20.0),
-              //     AnimatedCard(
-              //         imagePath: "assets/app_dev.jpg",
-              //         width: 200.0,
-              //         reverse: true),
-              //     SizedBox(height: 30.0),
-              //     SansBold("App Development", 20.0),
-              //     SizedBox(height: 10.0),
-              //   ],
-              // ),
-              // Center(
-              //   child: Sans(
-              //       "In the world of app development, I'm a master of innovation, crafting seamless experiences and building bridges between people and technology. Each app I create contributes to a more connected and convenient future.",
-              //       15.0),
-              // ),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     SizedBox(height: 20.0),
-              //     AnimatedCard(
-              //       imagePath: "assets/full_stack.jpg",
-              //       width: 200.0,
-              //     ),
-              //     SizedBox(height: 30.0),
-              //     SansBold("Full Stack Development", 20.0),
-              //     SizedBox(height: 10.0),
-              //   ],
-              // ),
-              // Center(
-              //   child: Sans(
-              //       "In full stack development, I bridge front-end and back-end, crafting seamless, holistic solutions. I'm the linchpin that ensures a seamless user experience, one line of code at a time.",
-              //       15.0),
-              // ),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     SizedBox(height: 20.0),
-              //     AnimatedCard(
-              //         imagePath: "assets/data_an.jpg",
-              //         width: 200.0,
-              //         reverse: true),
-              //     SizedBox(height: 30.0),
-              //     SansBold("Data Analysis", 20.0),
-              //     SizedBox(height: 10.0),
-              //   ],
-              // ),
-              // Center(
-              //   child: Sans(
-              //       "In data analysis, I'm a detective of insights, translating raw data into actionable knowledge. I thrive on revealing the stories hidden within datasets, unlocking a more informed and data-driven future.",
-              //       15.0),
-              // ),
+             
 
               SizedBox(height: 20.0),
             ],
